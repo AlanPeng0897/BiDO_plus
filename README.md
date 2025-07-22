@@ -74,13 +74,13 @@ To evaluate OOD detection performance of the target model:
 #### Low Resolution:
 ```bash
 cd low_resolution
-python compute_ood_score.py -c config/celeba.json --mode msp
+python compute_ood_score.py -c config/celeba.json -t path/to/model
 ```
 
 #### High Resolution:
 ```bash
 cd high_resolution 
-python compute_ood_score.py -c config/celeba.json --mode msp
+python compute_ood_score.py -c config/celeba.json -t path/to/model
 ```
 
 The script will compute and plot OOD detection scores, reporting metrics like AUROC and FPR.

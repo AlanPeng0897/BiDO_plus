@@ -215,12 +215,12 @@ def main():
     bido_args=loaded_args["bido"]
 
     model_config = loaded_args["model"]
-    target_model = Classifier(**model_config, bido_args=bido_args, OE_args=OE_args)
+    target_model = Classifier(**model_config, bido_args=bido_args, OE_args=OE_args, weights=args.path_T)
 
-    path_T = args.path_T
+    # path_T = args.path_T
 
-    ckp_T = torch.load(path_T)
-    target_model.load_state_dict(ckp_T['model_state_dict'])
+    # ckp_T = torch.load(path_T)
+    # target_model.load_state_dict(ckp_T['model_state_dict'])
     test_acc = target_model.dry_evaluate(testloader, metric)
 
     print(f"test_acc:{test_acc:.4f}")

@@ -21,7 +21,7 @@ from utils.hsic import hsic_objective, coco_objective
 # from utils.neural_linear_opt import NeuralLinear
 from utils.logger import CSVLogger, plot_csv, Tee
 
-from model import FaceNet, FaceNet64, MCNN, SCNN
+from models.model import FaceNet, FaceNet64, MCNN, SCNN
 
 import collections
 
@@ -194,19 +194,22 @@ class Classifier(BaseModel):
                  bido_args=None,
                  OE_args=None,
                  name='Classifier',
+                 weights=None,
                  *args,
                  **kwargs):
         super().__init__(name, *args, **kwargs)
+        
         self.num_classes = num_classes
         self.in_channels = in_channels
         self.pretrained = pretrained
         self.bido_args = bido_args
         self.OE_args = OE_args
         self.resume_path = resume_path
+        self.weights = weights
+
         self.model = self._build_model(architecture, pretrained)
         self.model.to(self.device)
         self.architecture = architecture
-
 
         self.to(self.device)
 
